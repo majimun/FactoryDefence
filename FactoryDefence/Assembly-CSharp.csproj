@@ -45,8 +45,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Characters\EnemyToys\Enemy.cs" />
+     <Compile Include="Assets\Scripts\Characters\PresentToys\PresentToy.cs" />
+     <Compile Include="Assets\Scripts\Common\BaseCharacter.cs" />
      <Compile Include="Assets\Scripts\ConveyorOnTheObjects.cs" />
+     <Compile Include="Assets\Scripts\EnemyGenerator.cs" />
+     <Compile Include="Assets\Scripts\FactoryMachines\FactoryMachine.cs" />
+     <Compile Include="Assets\Scripts\FactoryMachines\PresentGenerator.cs" />
      <Compile Include="Assets\Scripts\GenerateBoxInObject.cs" />
+     <Compile Include="Assets\Scripts\Manager\CalendarManager.cs" />
+     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Manager\ScoreManager.cs" />
+     <Compile Include="Assets\Scripts\Manager\TimeManager.cs" />
+     <Compile Include="Assets\Scripts\SearchArea.cs" />
+     <Compile Include="Assets\Scripts\SingletonMonoBehaviour.cs" />
+     <Compile Include="Assets\Scripts\UI\DayText.cs" />
+     <Compile Include="Assets\Scripts\UI\ScoreText.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
  <Reference Include="UnityEngine.UI">
