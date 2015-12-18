@@ -36,6 +36,8 @@ public class BaseCharacter : MonoBehaviour {
 	public const int ACTION_STATE_DEATH = 5;
 
 	protected GameObject _searchArea;
+	protected GameObject _attackArea;
+	protected GameObject _target;
 	protected int _actionState;
 	protected float[] _baseStatusArray;
 	protected float[] _statusArray;
@@ -46,6 +48,7 @@ public class BaseCharacter : MonoBehaviour {
 
 	public void CreateCharacter(float[] seed) {
 		_searchArea = transform.FindChild ("SearchArea").gameObject;
+		_attackArea = transform.FindChild ("AttackArea").gameObject;
 		_statusArray = new float[STATUS_ARRAY_MAX];
 		_baseStatusArray = seed;
 
@@ -61,6 +64,7 @@ public class BaseCharacter : MonoBehaviour {
 		_statusArray [(int)StatusIndex.ENERGY_RATE] = _baseStatusArray [(int)BaseStatusIndex.ENERGY_RATE];
 
 		_searchArea.transform.localScale = new Vector3 (1.0f, 1.0f, 1.0f) * _statusArray [(int)StatusIndex.SEARCH_RANGE];
+		_attackArea.transform.localScale = new Vector3 (1.0f, 1.0f, 1.0f) * _statusArray [(int)StatusIndex.ATTACK_RANGE];
 	}
 
 
@@ -99,25 +103,13 @@ public class BaseCharacter : MonoBehaviour {
 		_statusArray [(int)StatusIndex.HP] = hp;
 	}
 
+	// 子ブジェクトのサーチ範囲Colliderイベント
+	public virtual void SearchOnTriggerEnter (Collider other) {}
+	public virtual void SearchOnTriggerStay (Collider other) {}
+	public virtual void SearchOnTriggerExit (Collider other) {}
 
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <param name="tag">Target tag.</param>
-	public GameObject Search (string tag) {
-		GameObject target = null;
-
-		if (_searchArea != null) {
-			GameObject hitObj = _searchArea.GetComponent<SearchArea> ().GetHitObj;
-			if (hitObj != null) {
-				//Debug.Log("" + hitObj);
-
-				if (hitObj.tag.Equals (tag)) {
-					target = hitObj;
-				}
-			}
-		}
-
-		return target;
-	}
+	// 子オブジェクトの攻撃開始範囲Colliderイベント
+	public virtual void AttackOnTriggerEnter (Collider other) {}
+	public virtual void AttackOnTriggerStay (Collider other) {}
+	public virtual void AttackOnTriggerExit (Collider other) {}
 }

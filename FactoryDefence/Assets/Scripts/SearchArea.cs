@@ -3,23 +3,30 @@ using System.Collections;
 
 public class SearchArea : MonoBehaviour {
 
-	private GameObject _obj;
-	
-	public GameObject GetHitObj {
-		get{ return _obj; }
-	}
 
 	public void OnTriggerEnter(Collider c) {
-		_obj = c.gameObject;
+		BaseCharacter parent = transform.parent.GetComponent<BaseCharacter>();
+
+		if(parent != null) {
+			parent.SearchOnTriggerEnter(c);
+		}
 	}
 
 
 	public void OnTriggerStay(Collider c) {
-		_obj = c.gameObject;
+		BaseCharacter parent = transform.parent.GetComponent<BaseCharacter>();
+
+		if(parent != null) {
+			parent.SearchOnTriggerStay(c);
+		}
 	}
 
 
 	public void OnTriggerExit(Collider c) {
-		//_obj = null;
+		BaseCharacter parent = transform.parent.GetComponent<BaseCharacter>();
+
+		if(parent != null) {
+			parent.SearchOnTriggerExit(c);
+		}
 	}
 }

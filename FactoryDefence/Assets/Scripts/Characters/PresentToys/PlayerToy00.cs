@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PresentToy : BaseCharacter {
-
-	private GameObject _targetEnemy;
+public class PlayerToy00 : BaseCharacter {
 
 	// Use this for initialization
 	void Start () {
@@ -11,14 +9,14 @@ public class PresentToy : BaseCharacter {
 		InitStatus ();
 
 		transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
-		transform.tag = "PresentToy";
+		transform.tag = "PlayerToy";
 
 		_actionState = ACTION_STATE_BORN;
 	}
 
 
 	public override void InitStatus () {
-		float[] stArray = {1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 5.0f, 1.0f};
+		float[] stArray = {1.0f, 10.0f, 1.0f, 0.5f, 1.0f, 5.0f, 1.0f};
 		CreateCharacter (stArray);
 	}
 
@@ -45,20 +43,11 @@ public class PresentToy : BaseCharacter {
 			pos = transform.position;
 			pos.z += 1.5f * Time.deltaTime;
 			transform.position = pos;
-
-			if(_targetEnemy != null) {
-				_actionState = ACTION_STATE_LOOK;
-			} else {
-				GameObject enemy = Search("E_Body");
-				if(enemy != null){
-					_targetEnemy = enemy;
-				}
-			}
 			break;
 
 		case ACTION_STATE_LOOK:
-			if(_targetEnemy != null) {
-				transform.LookAt(_targetEnemy.transform);
+			if(_target != null) {
+				transform.LookAt(_target.transform);
 
 				pos = transform.position;
 				pos += transform.forward * 2.0f * Time.deltaTime;
@@ -69,8 +58,8 @@ public class PresentToy : BaseCharacter {
 			break;
 
 		case ACTION_STATE_ATTACK:
-			if(_targetEnemy != null) {
-				_targetEnemy.transform.parent.GetComponent<BaseCharacter>().OnDamage(_statusArray[(int)StatusIndex.ATTACK]);
+			if(_target != null) {
+				_target.GetComponent<BaseCharacter>().OnDamage(_statusArray[(int)StatusIndex.ATTACK]);
 			} else {
 				_actionState = ACTION_STATE_SEARCH;
 			}
@@ -83,10 +72,22 @@ public class PresentToy : BaseCharacter {
 		GameObject hitObj = c.gameObject;
 
 		if (hitObj != null) {
-			if (hitObj.transform.tag.Equals ("Enemy")) {
+			if (hitObj.transform.tag.Equals ("EnemyToy")) {
 				_actionState = ACTION_STATE_ATTACK;
 				//Destroy(hitObj.gameObject);
 			}
 		}
+	}
+
+
+	public override void SearchOnTriggerEnter (Collider other) {
+		if(other.tag.Equals("EnemyToy")) {
+			if(_actionState == ACTION_STATE_SEARCH) {
+				_actionState = ACTION_STATE_LOOK;
+				_target = other.gameObject;
+			}
+		}
+
+		base.SearchOnTriggerEnter (other);
 	}
 }
