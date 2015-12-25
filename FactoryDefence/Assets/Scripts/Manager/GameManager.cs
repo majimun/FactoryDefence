@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class GameManager : SingletonMonoBehaviour<GameManager> {
@@ -12,6 +13,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 	
 	// Update is called once per frame
 	void Update () {
+		if(Input.GetKeyDown(KeyCode.Space)) {
+			SceneManager.LoadScene("GameUIScene", LoadSceneMode.Additive);
+		}
+
 		int day = CalendarManager.Instance.Day;
 
 		if (day % 10 == 0 && day != 0) {
