@@ -60,6 +60,12 @@
      <Compile Include="Assets\Scripts\MouseController.cs" />
      <Compile Include="Assets\Scripts\SearchArea.cs" />
      <Compile Include="Assets\Scripts\SingletonMonoBehaviour.cs" />
+     <Compile Include="Assets\Scripts\StateMachine\BaseState.cs" />
+     <Compile Include="Assets\Scripts\StateMachine\P_Attack.cs" />
+     <Compile Include="Assets\Scripts\StateMachine\P_Search.cs" />
+     <Compile Include="Assets\Scripts\StateMachine\P_Stay.cs" />
+     <Compile Include="Assets\Scripts\StateMachine\StateLoader.cs" />
+     <Compile Include="Assets\Scripts\StateMachine\StateMachine.cs" />
      <Compile Include="Assets\Scripts\UI\DayText.cs" />
      <Compile Include="Assets\Scripts\UI\ScoreText.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />

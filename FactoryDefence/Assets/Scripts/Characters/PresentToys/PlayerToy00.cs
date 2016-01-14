@@ -23,11 +23,19 @@ public class PlayerToy00 : BaseCharacter {
 	
 	// Update is called once per frame
 	void Update () {
+		//=== 毎フレーム初期化 ===//
 		Vector3 pos = transform.position;
+		SearchFlag = false;
+		AttackFlag = false;
+		//=====================//
 
 		if (_statusArray[(int)StatusIndex.HP] <= 0) {
 			_actionState = ACTION_STATE_DEATH;
 			Destroy(gameObject);
+		}
+
+		if(transform.FindChild("P_Attack") != null) {
+			Debug.Log("attack!!!");
 		}
 
 		switch (_actionState) {
@@ -40,9 +48,12 @@ public class PlayerToy00 : BaseCharacter {
 			break;
 
 		case ACTION_STATE_SEARCH:
+			/*
 			pos = transform.position;
 			pos.z += 1.5f * Time.deltaTime;
 			transform.position = pos;
+			transform.rotation = Quaternion.Euler(0, 0, 0);
+			*/
 			break;
 
 		case ACTION_STATE_LOOK:
@@ -58,11 +69,14 @@ public class PlayerToy00 : BaseCharacter {
 			break;
 
 		case ACTION_STATE_ATTACK:
+			
+			/*
 			if(_target != null) {
 				_target.GetComponent<BaseCharacter>().OnDamage(_statusArray[(int)StatusIndex.ATTACK]);
 			} else {
 				_actionState = ACTION_STATE_SEARCH;
 			}
+			*/
 			break;
 		}
 	}
@@ -82,12 +96,21 @@ public class PlayerToy00 : BaseCharacter {
 
 	public override void SearchOnTriggerEnter (Collider other) {
 		if(other.tag.Equals("EnemyToy")) {
-			if(_actionState == ACTION_STATE_SEARCH) {
-				_actionState = ACTION_STATE_LOOK;
-				_target = other.gameObject;
-			}
+			// 探索状態のフラグを ON にする
+			SearchFlag = true;
 		}
 
 		base.SearchOnTriggerEnter (other);
+	}
+
+
+	public override void AttackOnTriggerEnter (Collider other)
+	{
+		if(other.tag.Equals("EnamyToy")) {
+			// 攻撃状態のフラグを ON にする
+			AttackFlag = true;
+		}
+
+		base.AttackOnTriggerEnter (other);
 	}
 }

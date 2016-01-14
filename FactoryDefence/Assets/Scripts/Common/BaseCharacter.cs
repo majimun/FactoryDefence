@@ -28,12 +28,15 @@ public class BaseCharacter : MonoBehaviour {
 		ENERGY_RATE
 	};
 
-	public const int ACTION_STATE_STAY = 0;
+	public bool SearchFlag { get; set; }
+	public bool AttackFlag { get; set; }
+
+	public const int ACTION_STATE_STAY   = 0;
 	public const int ACTION_STATE_SEARCH = 1;
-	public const int ACTION_STATE_LOOK = 2;
+	public const int ACTION_STATE_LOOK   = 2;
 	public const int ACTION_STATE_ATTACK = 3;
-	public const int ACTION_STATE_BORN = 4;
-	public const int ACTION_STATE_DEATH = 5;
+	public const int ACTION_STATE_BORN   = 4;
+	public const int ACTION_STATE_DEATH  = 5;
 
 	protected GameObject _searchArea;
 	protected GameObject _attackArea;

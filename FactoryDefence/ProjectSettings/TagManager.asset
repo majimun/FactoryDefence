@@ -8,6 +8,7 @@ TagManager:
   - PlayerToy
   - EnemyToy
   - Machine
+  - State
   layers:
   - Default
   - TransparentFX

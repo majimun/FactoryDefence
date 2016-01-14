@@ -17,6 +17,9 @@ public class MouseController : MonoBehaviour {
 			if(Physics.Raycast(mouseRay, out rayHit)) {
 				if(rayHit.collider.gameObject != null) {
 					GameObject hitObj = rayHit.collider.gameObject;
+					if(hitObj != null) {
+						Debug.Log(""+ hitObj.name);
+					}
 
 					if(hitObj.tag.Equals("Box")) {
 						hitObj.GetComponent<GenerateBoxInObject>().GeneratEvent();
