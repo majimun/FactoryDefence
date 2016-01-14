@@ -28,6 +28,8 @@ public class BaseCharacter : MonoBehaviour {
 		ENERGY_RATE
 	};
 
+	public StateProfile StateProf { get; set; }
+	public GameObject Target {get; set; }
 	public bool SearchFlag { get; set; }
 	public bool AttackFlag { get; set; }
 
@@ -105,6 +107,12 @@ public class BaseCharacter : MonoBehaviour {
 
 		_statusArray [(int)StatusIndex.HP] = hp;
 	}
+
+
+	public void Attack (GameObject target) {
+		target.GetComponent<BaseCharacter>().OnDamage(_statusArray[(int)StatusIndex.ATTACK]);
+	}
+
 
 	// 子ブジェクトのサーチ範囲Colliderイベント
 	public virtual void SearchOnTriggerEnter (Collider other) {}

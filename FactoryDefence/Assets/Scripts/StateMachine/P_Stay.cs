@@ -3,6 +3,7 @@ using System.Collections;
 
 //+++ PlayerToy = 停止状態[ID: 0] +++//
 public class P_Stay : BaseState {
+	
 
 	// Use this for initialization
 	void Start () {
@@ -10,6 +11,7 @@ public class P_Stay : BaseState {
 		_prof.id = 0;
 
 		NameLog();
+		transform.parent.GetComponent<BaseCharacter>().StateProf = _prof;
 	}
 	
 

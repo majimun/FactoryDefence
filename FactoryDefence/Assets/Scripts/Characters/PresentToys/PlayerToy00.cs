@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class PlayerToy00 : BaseCharacter {
-
 	// Use this for initialization
 	void Start () {
 		// status initialize
@@ -38,25 +37,21 @@ public class PlayerToy00 : BaseCharacter {
 			Debug.Log("attack!!!");
 		}
 
-		switch (_actionState) {
-		case ACTION_STATE_BORN:
+		switch (StateProf.name) {
+		case "P_Born":
 			GetComponent<Rigidbody>().AddForce(new Vector3(0, 100, 0), ForceMode.Acceleration);
 			_actionState = ACTION_STATE_SEARCH;
 			break;
 
-		case ACTION_STATE_STAY:
+		case "P_Stay":
 			break;
 
-		case ACTION_STATE_SEARCH:
+		case "P_Search":
+			
+			break;
+
+		case "P_Look":
 			/*
-			pos = transform.position;
-			pos.z += 1.5f * Time.deltaTime;
-			transform.position = pos;
-			transform.rotation = Quaternion.Euler(0, 0, 0);
-			*/
-			break;
-
-		case ACTION_STATE_LOOK:
 			if(_target != null) {
 				transform.LookAt(_target.transform);
 
@@ -66,9 +61,10 @@ public class PlayerToy00 : BaseCharacter {
 			} else {
 				_actionState = ACTION_STATE_SEARCH;
 			}
+			*/
 			break;
 
-		case ACTION_STATE_ATTACK:
+		case "P_Attack":
 			
 			/*
 			if(_target != null) {
@@ -96,19 +92,35 @@ public class PlayerToy00 : BaseCharacter {
 
 	public override void SearchOnTriggerEnter (Collider other) {
 		if(other.tag.Equals("EnemyToy")) {
-			// 探索状態のフラグを ON にする
-			SearchFlag = true;
+			if(StateProf.name.Equals("P_Search")) {
+				for(int i = 0; i < transform.childCount; i++) {
+					if(transform.GetChild(i).tag.Equals("State")) {
+						Target = other.gameObject;
+						transform.GetChild(i).GetComponent<BaseState>().ChangeState(2);
+
+						break;
+					}
+				}
+			}
 		}
 
 		base.SearchOnTriggerEnter (other);
 	}
 
 
-	public override void AttackOnTriggerEnter (Collider other)
+	public override void AttackOnTriggerEnter(Collider other)
 	{
-		if(other.tag.Equals("EnamyToy")) {
-			// 攻撃状態のフラグを ON にする
-			AttackFlag = true;
+		if(other.tag.Equals("EnemyToy")) {
+			if(StateProf.name.Equals("P_Look")) {
+				for(int i = 0; i < transform.childCount; i++) {
+					if(transform.GetChild(i).tag.Equals("State")) {
+						Target = other.gameObject;
+						transform.GetChild(i).GetComponent<BaseState>().ChangeState(3);
+
+						break;
+					}
+				}
+			}
 		}
 
 		base.AttackOnTriggerEnter (other);

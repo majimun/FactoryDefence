@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//+++ PlayerToy = 攻撃状態[ID: 3] +++//
-public class P_Attack : BaseState {
+//+++ PlayerToy = 追尾状態[ID: 2] +++//
+public class P_Look : BaseState {
 
 	private GameObject _target;
 
 	// Use this for initialization
 	void Start () {
-		_prof.name = "P_Attack";
-		_prof.id = 3;
+		_prof.name = "P_Look";
+		_prof.id = 2;
 
 		NameLog();
 		transform.parent.GetComponent<BaseCharacter>().StateProf = _prof;
@@ -19,7 +19,11 @@ public class P_Attack : BaseState {
 	// Update is called once per frame
 	void Update () {
 		if(_target != null) {
-			transform.parent.GetComponent<BaseCharacter>().Attack(_target);
+			transform.parent.LookAt(_target.transform);
+
+			Vector3 pos = transform.parent.position;
+			pos += transform.parent.forward * 2.0f * Time.deltaTime;
+			transform.parent.position = pos;
 		} else {
 			ChangeState(1);
 		}

@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 440462}
   - 135: {fileID: 13545634}
+  - 114: {fileID: 11421366}
   m_Layer: 2
   m_Name: AttackArea
   m_TagString: Untagged
@@ -31,7 +32,7 @@ GameObject:
   - 114: {fileID: 11482424}
   m_Layer: 0
   m_Name: Enemy00
-  m_TagString: Untagged
+  m_TagString: EnemyToy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,6 +163,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012c61239ba5b4de28424709aa359566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11421366
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8654cf9ec2da4526821859fceb3ee07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11482424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -223,6 +235,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: EnemyToy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

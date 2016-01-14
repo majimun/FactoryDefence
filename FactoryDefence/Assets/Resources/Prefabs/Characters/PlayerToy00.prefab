@@ -30,6 +30,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 451880}
   - 135: {fileID: 13503574}
+  - 114: {fileID: 11447098}
   m_Layer: 2
   m_Name: AttackArea
   m_TagString: Untagged
@@ -85,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 146506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 3.67, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 447304}
@@ -177,7 +178,19 @@ MonoBehaviour:
   States:
   - {fileID: 160342, guid: f721d458f46404aa0bea69507894174d, type: 2}
   - {fileID: 156518, guid: b57906fe6914f46409565f8f24529f8f, type: 2}
+  - {fileID: 169092, guid: ffb91b635caf646f4a880bad805821d9, type: 2}
   - {fileID: 148144, guid: b77c7accfc5de4d89bdcef8f41d2bc19, type: 2}
+--- !u!114 &11447098
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 164078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8654cf9ec2da4526821859fceb3ee07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11495838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -199,7 +212,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &13554760
 SphereCollider:
@@ -211,7 +224,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
@@ -222,7 +235,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: States.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Name
@@ -243,7 +256,23 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: States.Array.data[2]
       value: 
-      objectReference: {fileID: 148144, guid: b77c7accfc5de4d89bdcef8f41d2bc19, type: 2}
+      objectReference: {fileID: 169092, guid: ffb91b635caf646f4a880bad805821d9, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Center.x
+      value: 5.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 146506}

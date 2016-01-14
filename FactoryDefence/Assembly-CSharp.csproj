@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\AttackArea.cs" />
      <Compile Include="Assets\Scripts\Characters\EnemyToys\EnemyToy00.cs" />
      <Compile Include="Assets\Scripts\Characters\PresentToys\PlayerToy00.cs" />
      <Compile Include="Assets\Scripts\Common\BaseCharacter.cs" />
@@ -62,6 +63,7 @@
      <Compile Include="Assets\Scripts\SingletonMonoBehaviour.cs" />
      <Compile Include="Assets\Scripts\StateMachine\BaseState.cs" />
      <Compile Include="Assets\Scripts\StateMachine\P_Attack.cs" />
+     <Compile Include="Assets\Scripts\StateMachine\P_Look.cs" />
      <Compile Include="Assets\Scripts\StateMachine\P_Search.cs" />
      <Compile Include="Assets\Scripts\StateMachine\P_Stay.cs" />
      <Compile Include="Assets\Scripts\StateMachine\StateLoader.cs" />

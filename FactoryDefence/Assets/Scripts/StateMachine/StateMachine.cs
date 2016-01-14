@@ -15,6 +15,7 @@ public class StateMachine : MonoBehaviour {
 
 
 	public void Execute (int id) {
+		// 元から状態がある場合は、状態を終了させる
 		for(int i = 0; i < transform.childCount; i++) {
 			if(transform.GetChild(i).tag.Equals("State")) {
 				transform.GetChild(i).GetComponent<BaseState>().Finish();
