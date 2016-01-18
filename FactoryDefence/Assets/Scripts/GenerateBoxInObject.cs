@@ -19,7 +19,6 @@ public class GenerateBoxInObject : MonoBehaviour {
 	public void GeneratEvent() {
 		Vector3 initPos = Vector3.zero;
 		initPos.x = transform.position.x;
-		//initPos.y = transform.position.y - 0.5f;
 		initPos.z = transform.position.z + 1.0f;
 
 		GameObject toyClone = (GameObject)Instantiate (InObject, transform.position, Quaternion.identity);

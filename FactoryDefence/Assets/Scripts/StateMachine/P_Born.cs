@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//+++ PlayerToy = 停止状態[ID: 0] +++//
-public class P_Stay : BaseState {
-	
+public class P_Born : BaseState {
 
 	// Use this for initialization
 	public override void Start () {
@@ -13,11 +11,9 @@ public class P_Stay : BaseState {
 		base.Start ();
 	}
 	
-
+	// Update is called once per frame
 	void Update () {
-		int time = Time.frameCount;
-		if(time % 60 == 0 && time != 0) {
-			ChangeState(1);
-		}
+		transform.parent.GetComponent<Rigidbody>().AddForce(new Vector3(0, 100, 0), ForceMode.Acceleration);
+		ChangeState(1);
 	}
 }

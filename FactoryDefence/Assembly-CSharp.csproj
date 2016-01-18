@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\SingletonMonoBehaviour.cs" />
      <Compile Include="Assets\Scripts\StateMachine\BaseState.cs" />
      <Compile Include="Assets\Scripts\StateMachine\P_Attack.cs" />
+     <Compile Include="Assets\Scripts\StateMachine\P_Born.cs" />
      <Compile Include="Assets\Scripts\StateMachine\P_Look.cs" />
      <Compile Include="Assets\Scripts\StateMachine\P_Search.cs" />
      <Compile Include="Assets\Scripts\StateMachine\P_Stay.cs" />

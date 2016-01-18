@@ -21,6 +21,12 @@ public class BaseState : MonoBehaviour {
 	}
 
 
+	public virtual void Start () {
+		NameLog();
+		transform.parent.GetComponent<BaseCharacter>().StateProf = _prof;
+	}
+
+
 	public virtual void Execute () {
 		_execute = true;
 	}

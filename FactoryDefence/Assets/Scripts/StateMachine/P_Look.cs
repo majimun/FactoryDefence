@@ -7,13 +7,13 @@ public class P_Look : BaseState {
 	private GameObject _target;
 
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
 		_prof.name = "P_Look";
 		_prof.id = 2;
 
-		NameLog();
-		transform.parent.GetComponent<BaseCharacter>().StateProf = _prof;
 		_target = transform.parent.GetComponent<BaseCharacter>().Target;
+
+		base.Start ();
 	}
 	
 	// Update is called once per frame

@@ -5,12 +5,11 @@ using System.Collections;
 public class P_Search : BaseState {
 
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
 		_prof.name = "P_Search";
 		_prof.id = 1;
 
-		NameLog();
-		transform.parent.GetComponent<BaseCharacter>().StateProf = _prof;
+		base.Start ();
 	}
 	
 	// Update is called once per frame

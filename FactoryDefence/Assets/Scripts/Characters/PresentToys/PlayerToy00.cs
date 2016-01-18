@@ -22,11 +22,6 @@ public class PlayerToy00 : BaseCharacter {
 	
 	// Update is called once per frame
 	void Update () {
-		//=== 毎フレーム初期化 ===//
-		Vector3 pos = transform.position;
-		SearchFlag = false;
-		AttackFlag = false;
-		//=====================//
 
 		if (_statusArray[(int)StatusIndex.HP] <= 0) {
 			_actionState = ACTION_STATE_DEATH;
@@ -39,8 +34,6 @@ public class PlayerToy00 : BaseCharacter {
 
 		switch (StateProf.name) {
 		case "P_Born":
-			GetComponent<Rigidbody>().AddForce(new Vector3(0, 100, 0), ForceMode.Acceleration);
-			_actionState = ACTION_STATE_SEARCH;
 			break;
 
 		case "P_Stay":
@@ -51,28 +44,9 @@ public class PlayerToy00 : BaseCharacter {
 			break;
 
 		case "P_Look":
-			/*
-			if(_target != null) {
-				transform.LookAt(_target.transform);
-
-				pos = transform.position;
-				pos += transform.forward * 2.0f * Time.deltaTime;
-				transform.position = pos;
-			} else {
-				_actionState = ACTION_STATE_SEARCH;
-			}
-			*/
 			break;
 
 		case "P_Attack":
-			
-			/*
-			if(_target != null) {
-				_target.GetComponent<BaseCharacter>().OnDamage(_statusArray[(int)StatusIndex.ATTACK]);
-			} else {
-				_actionState = ACTION_STATE_SEARCH;
-			}
-			*/
 			break;
 		}
 	}
