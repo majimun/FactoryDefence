@@ -10,12 +10,13 @@ public class PlayerToy00 : BaseCharacter {
 		transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
 		transform.tag = "PlayerToy";
 
-		_actionState = ACTION_STATE_BORN;
+		_prof.name = transform.name;
+		_prof.tag = transform.tag;
 	}
 
 
 	public override void InitStatus () {
-		float[] stArray = {1.0f, 10.0f, 1.0f, 0.5f, 1.0f, 5.0f, 1.0f};
+		float[] stArray = {1.0f, 10.0f, 1.0f, 0.5f, 2.0f, 5.0f, 1.0f};
 		CreateCharacter (stArray);
 	}
 
@@ -24,57 +25,27 @@ public class PlayerToy00 : BaseCharacter {
 	void Update () {
 
 		if (_statusArray[(int)StatusIndex.HP] <= 0) {
-			_actionState = ACTION_STATE_DEATH;
 			Destroy(gameObject);
 		}
 
 		if(transform.FindChild("P_Attack") != null) {
 			Debug.Log("attack!!!");
 		}
-
-		switch (StateProf.name) {
-		case "P_Born":
-			break;
-
-		case "P_Stay":
-			break;
-
-		case "P_Search":
-			
-			break;
-
-		case "P_Look":
-			break;
-
-		case "P_Attack":
-			break;
-		}
 	}
 
 
 	public void OnCollisionEnter(Collision c) {
-		GameObject hitObj = c.gameObject;
-
-		if (hitObj != null) {
-			if (hitObj.transform.tag.Equals ("EnemyToy")) {
-				_actionState = ACTION_STATE_ATTACK;
-				//Destroy(hitObj.gameObject);
-			}
-		}
 	}
 
 
 	public override void SearchOnTriggerEnter (Collider other) {
 		if(other.tag.Equals("EnemyToy")) {
 			if(StateProf.name.Equals("P_Search")) {
-				for(int i = 0; i < transform.childCount; i++) {
-					if(transform.GetChild(i).tag.Equals("State")) {
-						Target = other.gameObject;
-						transform.GetChild(i).GetComponent<BaseState>().ChangeState(2);
+				Target = other.gameObject;
 
-						break;
-					}
-				}
+				// 追尾状態へ遷移
+				GameObject state = FindChildWithTag("State").gameObject;
+				state.GetComponent<BaseState>().ChangeState(2);
 			}
 		}
 
@@ -86,14 +57,9 @@ public class PlayerToy00 : BaseCharacter {
 	{
 		if(other.tag.Equals("EnemyToy")) {
 			if(StateProf.name.Equals("P_Look")) {
-				for(int i = 0; i < transform.childCount; i++) {
-					if(transform.GetChild(i).tag.Equals("State")) {
-						Target = other.gameObject;
-						transform.GetChild(i).GetComponent<BaseState>().ChangeState(3);
-
-						break;
-					}
-				}
+				// 攻撃状態へ遷移
+				GameObject state = FindChildWithTag("State").gameObject;
+				state.GetComponent<BaseState>().ChangeState(3);
 			}
 		}
 

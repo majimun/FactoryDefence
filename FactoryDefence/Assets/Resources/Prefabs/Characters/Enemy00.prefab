@@ -186,7 +186,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0cff3de612114593821460223f358a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  States: []
+  States:
+  - {fileID: 143488, guid: cf2a3936897c84b4e991d3f6b567ce49, type: 2}
+  - {fileID: 156518, guid: b57906fe6914f46409565f8f24529f8f, type: 2}
+  - {fileID: 169092, guid: ffb91b635caf646f4a880bad805821d9, type: 2}
+  - {fileID: 148144, guid: b77c7accfc5de4d89bdcef8f41d2bc19, type: 2}
+  - {fileID: 160342, guid: f721d458f46404aa0bea69507894174d, type: 2}
 --- !u!114 &11482424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -208,7 +213,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &13593020
 SphereCollider:
@@ -220,7 +225,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
@@ -229,6 +234,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: States.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -252,6 +261,30 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: EnemyToy
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: States.Array.data[0]
+      value: 
+      objectReference: {fileID: 143488, guid: cf2a3936897c84b4e991d3f6b567ce49, type: 2}
+    - target: {fileID: 0}
+      propertyPath: States.Array.data[1]
+      value: 
+      objectReference: {fileID: 156518, guid: b57906fe6914f46409565f8f24529f8f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: States.Array.data[2]
+      value: 
+      objectReference: {fileID: 169092, guid: ffb91b635caf646f4a880bad805821d9, type: 2}
+    - target: {fileID: 0}
+      propertyPath: States.Array.data[3]
+      value: 
+      objectReference: {fileID: 148144, guid: b77c7accfc5de4d89bdcef8f41d2bc19, type: 2}
+    - target: {fileID: 0}
+      propertyPath: States.Array.data[4]
+      value: 
+      objectReference: {fileID: 160342, guid: f721d458f46404aa0bea69507894174d, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Radius
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

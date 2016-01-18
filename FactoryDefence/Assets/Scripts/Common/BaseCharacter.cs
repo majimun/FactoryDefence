@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public struct CharaProfile {
+	public string name;
+	public string tag;
+}
+
 public class BaseCharacter : MonoBehaviour {
 
 	public const int BASE_STATUS_ARRAY_MAX = 7;
@@ -33,6 +38,10 @@ public class BaseCharacter : MonoBehaviour {
 	public bool SearchFlag { get; set; }
 	public bool AttackFlag { get; set; }
 
+	public CharaProfile CharaProf { 
+		get{ return _prof; }
+	}
+
 	public const int ACTION_STATE_STAY   = 0;
 	public const int ACTION_STATE_SEARCH = 1;
 	public const int ACTION_STATE_LOOK   = 2;
@@ -40,6 +49,7 @@ public class BaseCharacter : MonoBehaviour {
 	public const int ACTION_STATE_BORN   = 4;
 	public const int ACTION_STATE_DEATH  = 5;
 
+	protected CharaProfile _prof;
 	protected GameObject _searchArea;
 	protected GameObject _attackArea;
 	protected GameObject _target;
@@ -88,10 +98,6 @@ public class BaseCharacter : MonoBehaviour {
 	}
 
 
-	/// <summary>
-	/// Raises the damage event.
-	/// </summary>
-	/// <param name="damage">Damage.</param>
 	public void OnDamage (float damage) {
 		float hp = _statusArray [(int)StatusIndex.HP];
 
@@ -106,6 +112,21 @@ public class BaseCharacter : MonoBehaviour {
 		}
 
 		_statusArray [(int)StatusIndex.HP] = hp;
+	}
+
+
+	public Transform FindChildWithTag (string tag) {
+		Transform child = null;
+
+		for(int i = 0; i < transform.childCount; i++) {
+			if(transform.GetChild(i).tag.Equals(tag)) {
+				child = transform.GetChild(i);
+
+				break;
+			}
+		}
+
+		return child;
 	}
 
 

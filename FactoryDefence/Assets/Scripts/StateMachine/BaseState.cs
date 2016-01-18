@@ -9,6 +9,7 @@ public struct StateProfile {
 public class BaseState : MonoBehaviour {
 
 	protected StateProfile _prof;
+	protected CharaProfile _charaProf;
 	protected Animator _anim;
 	protected bool _execute;
 
@@ -24,6 +25,8 @@ public class BaseState : MonoBehaviour {
 	public virtual void Start () {
 		NameLog();
 		transform.parent.GetComponent<BaseCharacter>().StateProf = _prof;
+		_charaProf = transform.parent.GetComponent<BaseCharacter>().CharaProf;
+
 	}
 
 
