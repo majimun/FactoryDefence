@@ -28,4 +28,11 @@ public class GenerateBoxInObject : MonoBehaviour {
 
 		Destroy (gameObject);
 	}
+
+
+	public void OnTriggerExit (Collider other) {
+		if(other.tag.Equals("Converter")) {
+			Destroy(gameObject);
+		}
+	}
 }

@@ -42,6 +42,10 @@ public class BaseCharacter : MonoBehaviour {
 		get{ return _prof; }
 	}
 
+	public CharacterStatusData Status {
+		get { return _status; }
+	}
+
 	public const int ACTION_STATE_STAY   = 0;
 	public const int ACTION_STATE_SEARCH = 1;
 	public const int ACTION_STATE_LOOK   = 2;
@@ -50,6 +54,7 @@ public class BaseCharacter : MonoBehaviour {
 	public const int ACTION_STATE_DEATH  = 5;
 
 	protected CharaProfile _prof;
+	protected CharacterStatusData _status;
 	protected GameObject _searchArea;
 	protected GameObject _attackArea;
 	protected GameObject _target;
@@ -57,13 +62,12 @@ public class BaseCharacter : MonoBehaviour {
 	protected float[] _baseStatusArray;
 	protected float[] _statusArray;
 
-
-	public virtual void InitStatus () {/*read status = {expRate, hpMax, attack, moveSpeed, attackRange, searchRange, energyRate, level*/}
+	public virtual void Setup () {}
+	public virtual void EditStatus () {}
 
 
 	public void CreateCharacter(float[] seed) {
-		_searchArea = transform.FindChild ("SearchArea").gameObject;
-		_attackArea = transform.FindChild ("AttackArea").gameObject;
+		
 		_statusArray = new float[STATUS_ARRAY_MAX];
 		_baseStatusArray = seed;
 
@@ -78,8 +82,7 @@ public class BaseCharacter : MonoBehaviour {
 		_statusArray [(int)StatusIndex.SEARCH_RANGE] = _baseStatusArray [(int)BaseStatusIndex.SEARCH_RANGE];
 		_statusArray [(int)StatusIndex.ENERGY_RATE] = _baseStatusArray [(int)BaseStatusIndex.ENERGY_RATE];
 
-		_searchArea.transform.localScale = new Vector3 (1.0f, 1.0f, 1.0f) * _statusArray [(int)StatusIndex.SEARCH_RANGE];
-		_attackArea.transform.localScale = new Vector3 (1.0f, 1.0f, 1.0f) * _statusArray [(int)StatusIndex.ATTACK_RANGE];
+
 	}
 
 
@@ -98,23 +101,35 @@ public class BaseCharacter : MonoBehaviour {
 	}
 
 
-	public void OnDamage (float damage) {
-		float hp = _statusArray [(int)StatusIndex.HP];
+	/// <summary>
+	/// ダメージ計算を行います。
+	/// </summary>
+	/// <param name="damage">与ダメージ</param>
+	public void OnDamage (int damage) {
+		int hp = _status.Hp;
 
+		// ダメージ量チェック
 		if (damage <= 0) {
 			damage = 0;
 		}
 
-		hp -= damage;
+		hp -= damage;	// ダメージ計算
 
+		// HP残量チェック
 		if (hp < 0) {
 			hp = 0;
 		}
 
-		_statusArray [(int)StatusIndex.HP] = hp;
+		_status.Hp = hp;
 	}
 
 
+	/// <summary>
+	/// 自オブジェクトの子を'タグ検索'。
+	/// 検索結果のオブジェクトを返します。
+	/// </summary>
+	/// <returns>子オブジェクト</returns>
+	/// <param name="tag">検索対象のタグ名</param>
 	public Transform FindChildWithTag (string tag) {
 		Transform child = null;
 
@@ -131,7 +146,9 @@ public class BaseCharacter : MonoBehaviour {
 
 
 	public void Attack (GameObject target) {
-		target.GetComponent<BaseCharacter>().OnDamage(_statusArray[(int)StatusIndex.ATTACK]);
+		if(target != null) {
+			target.GetComponent<BaseCharacter>().OnDamage(_status.Attack);
+		}
 	}
 
 

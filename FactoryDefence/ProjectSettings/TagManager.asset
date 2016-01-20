@@ -9,6 +9,7 @@ TagManager:
   - EnemyToy
   - Machine
   - State
+  - Converter
   layers:
   - Default
   - TransparentFX

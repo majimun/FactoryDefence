@@ -16,7 +16,7 @@ public class P_Search : BaseState {
 	void Update () {
 		Vector3 pos = transform.parent.position;
 
-		switch (_charaProf.tag) {
+		switch (transform.parent.tag) {
 		case "PlayerToy":
 			
 			pos.z += 1.5f * Time.deltaTime;

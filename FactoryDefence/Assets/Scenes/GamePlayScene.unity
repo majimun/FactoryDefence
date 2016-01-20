@@ -539,6 +539,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 426856196}
+  - 114: {fileID: 426856198}
+  - 65: {fileID: 426856197}
   m_Layer: 8
   m_Name: FactoryMachine
   m_TagString: Machine
@@ -553,7 +555,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 426856195}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -5}
+  m_LocalPosition: {x: 0, y: 0.7, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1658306934}
@@ -561,6 +563,29 @@ Transform:
   - {fileID: 1628137904}
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!65 &426856197
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 426856195}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7, y: 2, z: 1.39}
+  m_Center: {x: 0, y: 0, z: 5}
+--- !u!114 &426856198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 426856195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d20f51dca4e4942b5893f0e3f3009aa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &463792388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1845,7 +1870,7 @@ GameObject:
   - 23: {fileID: 1628137901}
   m_Layer: 0
   m_Name: Converter
-  m_TagString: Untagged
+  m_TagString: Converter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1883,8 +1908,8 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1628137900}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1921,7 +1946,7 @@ GameObject:
   - 114: {fileID: 1658306935}
   m_Layer: 0
   m_Name: Conveyor
-  m_TagString: Machine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ConveyorOnTheObjects : MonoBehaviour {
+public class Conveyor : MonoBehaviour {
 
     // 接触しているキャラクタを左から右へ流す
     public void OnCollisionStay(Collision other) {

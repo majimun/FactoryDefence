@@ -3,28 +3,45 @@ using System.Collections;
 
 public class PlayerToy00 : BaseCharacter {
 	// Use this for initialization
-	void Start () {
-		// status initialize
-		InitStatus ();
-
-		transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
-		transform.tag = "PlayerToy";
-
-		_prof.name = transform.name;
-		_prof.tag = transform.tag;
+	void Awake () {
+		// Character Initialize
+		Setup ();
 	}
 
 
-	public override void InitStatus () {
-		float[] stArray = {1.0f, 10.0f, 1.0f, 0.5f, 2.0f, 5.0f, 1.0f};
-		CreateCharacter (stArray);
+	public override void Setup () {
+		//=== ステータス ===//
+		_status = new CharacterStatusData();
+		_status.Name = "soldier";
+		_status.Id = "null";
+		_status.Attribute = "normal";
+		_status.Level = 1;
+		_status.Hp_max = 10;
+		_status.Hp = _status.Hp_max;
+		_status.Exp = 0;
+		_status.Exp_max = 5;
+		_status.Attack = 5;
+		_status.Speed = 1;
+		_status.Search_range = 5;
+		_status.Attack_renge = 2;
+		_status.Energy_rate = 1;
+
+		//=== 衝突判定用オブジェクト ===//
+		_searchArea = transform.FindChild ("SearchArea").gameObject;
+		_searchArea.transform.localScale = new Vector3 (1.0f, 1.0f, 1.0f) * _status.Search_range;
+		_attackArea = transform.FindChild ("AttackArea").gameObject;
+		_attackArea.transform.localScale = new Vector3 (1.0f, 1.0f, 1.0f) * _status.Attack_renge;
+
+		//=== Transform 設定 ===//
+		transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
+		transform.tag = "PlayerToy";
 	}
 
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (_statusArray[(int)StatusIndex.HP] <= 0) {
+		if (_status.Hp <= 0) {
 			Destroy(gameObject);
 		}
 
